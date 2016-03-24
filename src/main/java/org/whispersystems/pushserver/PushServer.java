@@ -60,6 +60,7 @@ public class PushServer extends Application<PushServerConfiguration> {
 
     environment.jersey().register(AuthFactory.binder(new BasicAuthFactory<>(serverAuthenticator, "PushServer", Server.class)));
     environment.jersey().register(new PushController(apnSender, gcmSender));
+   // environment.jersey().register(new PushController(null, gcmSender));
     environment.jersey().register(new FeedbackController(gcmQueue, apnQueue));
 
     environment.healthChecks().register("Redis", new RedisHealthCheck(redisClient));

@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import io.dropwizard.auth.Auth;
@@ -30,6 +31,7 @@ public class PushController {
   @Timed
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
+ //[LC]: added y me for debugging purposes @Produces("application/json")
   @Path("/gcm")
   public void sendGcmPush(@Auth Server server, @Valid GcmMessage gcmMessage) {
     gcmSender.sendMessage(gcmMessage);
