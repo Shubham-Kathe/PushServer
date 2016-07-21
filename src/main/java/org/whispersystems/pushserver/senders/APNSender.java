@@ -133,7 +133,7 @@ public class APNSender implements Managed {
   public void start() throws Exception {
     byte[] pushKeyStore = initializeKeyStore(pushCertificate, pushKey);
     byte[] voipKeyStore = initializeKeyStore(voipCertificate, voipKey);
-    //[LC] uncomment for sandbox dst
+    //[LC] uncomment for production releases
    // this.pushApnService = APNS.newService()
     //                          .withCert(new ByteArrayInputStream(pushKeyStore), "insecure")
      //                         .asQueued()
@@ -143,6 +143,7 @@ public class APNSender implements Managed {
             .withCert(new ByteArrayInputStream(pushKeyStore), "insecure")
             .asQueued()
             .withSandboxDestination().build();
+
     this.voipApnService = APNS.newService()
                               .withCert(new ByteArrayInputStream(voipKeyStore), "insecure")
                               .asQueued()
